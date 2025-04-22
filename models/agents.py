@@ -9,7 +9,7 @@ class TravelAgents:
     def __init__(self):
         env = load_environment()
         self.OpenAIGPT35 = ChatOpenAI(
-            model="openai/gpt-3.5-turbo", max_tokens=4000, temperature=0.2
+            model="openai/gpt-3.5-turbo", max_tokens=2000, temperature=0.2
         )
         self.groq = ChatGroq(
               temperature=0, groq_api_key=env["GROQ_API_KEY"], model="groq/llama3-8b-8192"
