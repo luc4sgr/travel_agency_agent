@@ -3,15 +3,16 @@ from textwrap import dedent
 from langchain_openai import ChatOpenAI
 from langchain_groq import ChatGroq
 from crewai_tools import SerperDevTool, WebsiteSearchTool
-
+from config.env import load_environment
 
 class TravelAgents:
     def __init__(self):
+        env = load_environment()
         self.OpenAIGPT35 = ChatOpenAI(
             model="openai/gpt-3.5-turbo", max_tokens=4000, temperature=0.2
         )
         self.groq = ChatGroq(
-            temperature=0, groq_api_key="DUMMY_GROQ_KEY", model="groq/llama3-8b-8192"
+              temperature=0, groq_api_key=env["GROQ_API_KEY"], model="groq/llama3-8b-8192"
         )
         self.search_tool = SerperDevTool()
         self.web_rag_tool = WebsiteSearchTool()
