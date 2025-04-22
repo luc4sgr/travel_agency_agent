@@ -17,20 +17,17 @@ def run_ui(controller):
             with st.spinner("⏳ Generating your itinerary..."):
                 result = controller.run_trip_plan(origin, cities, date_range, interests)
 
-            # Final summary from the Crew
-            if "cru" in result and result["cru"]:
+            if "final_summary" in result and result["final_summary"]:
                 st.subheader("✅ Final Summary from the AI")
-                st.markdown(result["cru"])
+                st.markdown(result["final_summary"])
 
-            # Detailed tasks
-            if "tarefas_saída" in result and result["tarefas_saída"]:
+            if "task_outputs" in result and result["task_outputs"]:
                 st.subheader("📋 Completed Tasks")
-                for i, task in enumerate(result["tarefas_saída"]):
+                for i, task in enumerate(result["task_outputs"]):
                     with st.expander(f"{i+1}. {task.get('agent', 'Agent')}"):
                         st.markdown(f"**Task Description:** {task['description']}")
                         st.markdown(f"**Result:**\n\n{task['raw']}")
 
-            # Token usage
-            if "uso de token" in result and result["uso de token"]:
+            if "token_usage" in result and result["token_usage"]:
                 st.subheader("📊 Token Usage")
-                st.json(result["uso de token"])
+                st.json(result["token_usage"])
