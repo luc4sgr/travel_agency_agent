@@ -2,31 +2,32 @@ from crewai import Task
 from textwrap import dedent
 
 class TravelTasks:
-    def __tip_section(self):
-        return "If you do your BEST WORK, I'll give you a $10,000 commission!"
+    def __note_section(self):
+        return "Please ensure the information is accurate, comprehensive, and tailored to the user's travel preferences."
 
     def plan_itinerary(self, agent, city, travel_dates, interests):
         return Task(
             description=dedent(f"""
                 **Task**: Develop a 7-Day Travel Itinerary
-                **Description**: Expand the city guide into a full 7-day travel itinerary with detailed 
-                per-day plans, including weather forecasts, places to eat, packing suggestions, 
-                and a budget breakdown. You MUST suggest actual places to visit, hotels to stay, 
-                and restaurants to go to.
+                **Description**: Create a comprehensive 7-day travel itinerary based on the city, user interests, and date range provided. The plan should include:
+                - Daily activity schedules
+                - Recommended restaurants, hotels, and attractions
+                - Forecasted weather per day
+                - Suggested items to pack
+                - Estimated budget per day
 
                 **Parameters**: 
                 - City: {city}
-                - Trip Date: {travel_dates}
+                - Travel Dates: {travel_dates}
                 - Traveler Interests: {interests}
 
-                **Note**: {self.__tip_section()}
+                **Note**: {self.__note_section()}
             """),
             agent=agent,
             expected_output=dedent("""
-                A fully detailed 7-day itinerary, including:
-                - Day-wise breakdown of activities
-                - Recommended hotels, restaurants, and attractions
-                - Estimated budget and weather forecast
+                - Detailed 7-day itinerary
+                - Hotels, restaurants, and points of interest
+                - Budget breakdown and weather forecast per day
             """),
         )
 
@@ -34,8 +35,11 @@ class TravelTasks:
         return Task(
             description=dedent(f"""
                 **Task**: Identify the Best City for the Trip
-                **Description**: Compare cities based on weather, events, costs, and user interests. 
-                Suggest the best one with supporting data including flight costs and cultural value.
+                **Description**: Analyze and compare the provided cities to select the best destination for the user, based on:
+                - Current and historical weather conditions
+                - Local events or festivals during the travel period
+                - Travel and accommodation costs
+                - Compatibility with user's interests
 
                 **Parameters**:
                 - Origin: {origin}
@@ -43,13 +47,13 @@ class TravelTasks:
                 - Interests: {interests}
                 - Travel Dates: {travel_dates}
 
-                **Note**: {self.__tip_section()}
+                **Note**: {self.__note_section()}
             """),
             agent=agent,
             expected_output=dedent("""
-                - Best city selected with justification
-                - Cost, weather, and events included
-                - Flight price estimates
+                - Recommended city with rationale
+                - Climate forecast, cultural events, cost estimations
+                - Suggested transportation or flight options
             """),
         )
 
@@ -57,20 +61,22 @@ class TravelTasks:
         return Task(
             description=dedent(f"""
                 **Task**: Gather In-depth City Information
-                **Description**: Create a detailed city guide including landmarks, local customs,
-                weather, and hidden gems. Should support planning for the user interests and timeline.
+                **Description**: Research and compile an in-depth city guide that includes:
+                - Main tourist attractions and hidden gems
+                - Local customs and travel etiquette
+                - Weather expectations and cost of travel/lodging during the selected dates
 
                 **Parameters**:
                 - City: {city}
                 - Interests: {interests}
                 - Travel Dates: {travel_dates}
 
-                **Note**: {self.__tip_section()}
+                **Note**: {self.__note_section()}
             """),
             agent=agent,
             expected_output=dedent("""
-                - Attractions and cultural details
-                - Forecasts and high-level expenses
-                - Local customs and hidden spots
+                - Complete city overview including cultural and practical travel info
+                - Daily weather forecast and cost estimates
+                - Suggestions tailored to user interests
             """),
         )
