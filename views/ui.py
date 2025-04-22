@@ -1,19 +1,36 @@
 import streamlit as st
 
 def run_ui(controller):
-    st.title("Trip Planner Crew")
+    st.title("🧭 Trip Planner Crew")
 
     with st.sidebar:
-        st.header("Enter Your Trip Details")
-        origin = st.text_input("From where will you be traveling from?")
-        cities = st.text_input("Which cities are you interested in visiting?")
-        date_range = st.text_input("What is the date range of your trip?")
-        interests = st.text_input("What are your interests and hobbies?")
+        st.header("✈️ Detalhes da sua viagem")
+        origin = st.text_input("Origem")
+        cities = st.text_input("Cidades para considerar")
+        date_range = st.text_input("Período da viagem (ex: 10/06/2025 a 17/06/2025)")
+        interests = st.text_input("Interesses (ex: cultura, gastronomia, natureza)")
 
-    if st.button("Generate Itinerary"):
+    if st.button("Gerar Itinerário"):
         if not all([origin, cities, date_range, interests]):
-            st.error("Please fill in all the fields to continue.")
+            st.error("❌ Por favor, preencha todos os campos.")
         else:
-            result = controller.run_trip_plan(origin, cities, date_range, interests)
-            st.subheader("Your Personalized Trip Plan:")
-            st.write(result)
+            with st.spinner("⏳ Gerando roteiro..."):
+                result = controller.run_trip_plan(origin, cities, date_range, interests)
+
+            # Resumo final do Crew
+            if "cru" in result and result["cru"]:
+                st.subheader("✅ Resumo final da IA")
+                st.markdown(result["cru"])
+
+            # Detalhes por tarefa
+            if "tarefas_saída" in result and result["tarefas_saída"]:
+                st.subheader("📋 Tarefas executadas")
+                for i, task in enumerate(result["tarefas_saída"]):
+                    with st.expander(f"{i+1}. {task.get('agent', 'Agente')}"):
+                        st.markdown(f"**Descrição:** {task['description']}")
+                        st.markdown(f"**Resultado:**\n\n{task['raw']}")
+
+            # Métricas de uso
+            if "uso de token" in result and result["uso de token"]:
+                st.subheader("📊 Métricas de uso")
+                st.json(result["uso de token"])
