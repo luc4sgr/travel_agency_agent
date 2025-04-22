@@ -4,33 +4,33 @@ def run_ui(controller):
     st.title("🧭 Trip Planner Crew")
 
     with st.sidebar:
-        st.header("✈️ Detalhes da sua viagem")
-        origin = st.text_input("Origem")
-        cities = st.text_input("Cidades para considerar")
-        date_range = st.text_input("Período da viagem (ex: 10/06/2025 a 17/06/2025)")
-        interests = st.text_input("Interesses (ex: cultura, gastronomia, natureza)")
+        st.header("✈️ Your Trip Details")
+        origin = st.text_input("Origin")
+        cities = st.text_input("Cities to consider")
+        date_range = st.text_input("Travel period (e.g. 2025-06-10 to 2025-06-17)")
+        interests = st.text_input("Interests (e.g. culture, food, nature)")
 
-    if st.button("Gerar Itinerário"):
+    if st.button("Generate Itinerary"):
         if not all([origin, cities, date_range, interests]):
-            st.error("❌ Por favor, preencha todos os campos.")
+            st.error("❌ Please fill out all fields.")
         else:
-            with st.spinner("⏳ Gerando roteiro..."):
+            with st.spinner("⏳ Generating your itinerary..."):
                 result = controller.run_trip_plan(origin, cities, date_range, interests)
 
-            # Resumo final do Crew
+            # Final summary from the Crew
             if "cru" in result and result["cru"]:
-                st.subheader("✅ Resumo final da IA")
+                st.subheader("✅ Final Summary from the AI")
                 st.markdown(result["cru"])
 
-            # Detalhes por tarefa
+            # Detailed tasks
             if "tarefas_saída" in result and result["tarefas_saída"]:
-                st.subheader("📋 Tarefas executadas")
+                st.subheader("📋 Completed Tasks")
                 for i, task in enumerate(result["tarefas_saída"]):
-                    with st.expander(f"{i+1}. {task.get('agent', 'Agente')}"):
-                        st.markdown(f"**Descrição:** {task['description']}")
-                        st.markdown(f"**Resultado:**\n\n{task['raw']}")
+                    with st.expander(f"{i+1}. {task.get('agent', 'Agent')}"):
+                        st.markdown(f"**Task Description:** {task['description']}")
+                        st.markdown(f"**Result:**\n\n{task['raw']}")
 
-            # Métricas de uso
+            # Token usage
             if "uso de token" in result and result["uso de token"]:
-                st.subheader("📊 Métricas de uso")
+                st.subheader("📊 Token Usage")
                 st.json(result["uso de token"])
