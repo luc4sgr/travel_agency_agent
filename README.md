@@ -4,12 +4,13 @@
 ![Python](https://img.shields.io/badge/Python-3.10+-green)
 ![License](https://img.shields.io/badge/license-MIT-orange)
 
-> Um sistema inteligente de planejamento de viagens utilizando arquitetura multiagente para criar roteiros personalizados de 7 dias com base em interesses, orçamento, clima e eventos culturais.
+> Um sistema inteligente de planejamento de viagens utilizando arquitetura multiagente para criar roteiros personalizados com base em interesses, orçamento, clima e eventos culturais.
 
 ## 🚀 Visão Geral
 
 Trip Planner Crew é uma solução de IA avançada que demonstra o poder da colaboração entre agentes autônomos para resolver problemas complexos de planejamento de viagem. Através da orquestração de múltiplos agentes especializados, o sistema cria experiências de viagem personalizadas e contextualmente relevantes.
 
+![Captura de tela 2025-04-23 114542](https://github.com/user-attachments/assets/d87da3a4-f000-4c6e-96f3-2f8f5837b210)
 
 ## 🎯 Principais Recursos
 
