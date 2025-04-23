@@ -10,6 +10,7 @@
 
 Trip Planner Crew é uma solução de IA avançada que demonstra o poder da colaboração entre agentes autônomos para resolver problemas complexos de planejamento de viagem. Através da orquestração de múltiplos agentes especializados, o sistema cria experiências de viagem personalizadas e contextualmente relevantes.
 
+
 ## 🎯 Principais Recursos
 
 - **Roteiros personalizados de 7 dias** adaptados aos seus interesses específicos
