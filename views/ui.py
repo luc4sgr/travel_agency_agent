@@ -4,7 +4,7 @@ def run_ui(controller):
     st.title("✈️ Your Trip Details")
 
     with st.sidebar:
-        st.header("✈️ Detalhes da sua viagem")
+        st.header("✈️ Details of your trip")
         origin = st.text_input("Origin")
         cities = st.text_input("Cities to consider")
         date_range = st.text_input("Travel period (e.g. 2025-06-10 to 2025-06-17)")
