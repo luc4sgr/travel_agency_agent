@@ -4,11 +4,23 @@ from controllers.trip_controller import TripController
 
 @pytest.fixture(autouse=True)
 def mock_kickoff():
-    """Mock automático para Crew.kickoff() em todos os testes"""
+    """Automatically mock Crew.kickoff for all tests."""
     with patch("crewai.Crew.kickoff") as mock:
-        mock_return = MagicMock()
-        mock_return.raw = "mocked itinerary"
-        mock.return_value = mock_return
+        mock_result = MagicMock()
+        mock_result.raw = "mocked itinerary"
+        mock_result.metrics = {"total_tokens": 12345}
+
+        mock_result.tasks_output = [
+            MagicMock(
+                description="Mock task description",
+                expected_output="Expected output format",
+                summary="Task summary",
+                raw="Task result content",
+                agent="Mock Agent"
+            )
+        ]
+
+        mock.return_value = mock_result
         yield mock
 
 @pytest.fixture
