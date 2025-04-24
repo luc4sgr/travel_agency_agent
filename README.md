@@ -14,7 +14,7 @@ Trip Planner Crew é uma solução de IA avançada que demonstra o poder da cola
 
 ## 🎯 Principais Recursos
 
-- **Roteiros personalizados de 7 dias** adaptados aos seus interesses específicos
+- **Roteiros personalizados** adaptados aos seus interesses específicos
 - **Recomendações sensíveis ao orçamento** para acomodações, restaurantes e atividades
 - **Sugestões baseadas em clima e sazonalidade** para otimizar sua experiência
 - **Descoberta de eventos culturais e locais** durante o período da viagem
